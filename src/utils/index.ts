@@ -117,7 +117,7 @@ export const coffeeOptions = [
 const halfLifeHours = 5
 
 
-export function calculateCurrentCaffeineLevel(historyData: HistoryData) {
+export function calculateCurrentCaffeineLevel(historyData: HistoryData): number {
     const currentTime = Date.now()
     const halfLife = halfLifeHours * 60 * 60 * 1000 // 5 hours in milliseconds
     const maxAge = 48 * 60 * 60 * 1000 // 48 hours in milliseconds
@@ -136,7 +136,7 @@ export function calculateCurrentCaffeineLevel(historyData: HistoryData) {
         }
     }
 
-    return totalCaffeine.toFixed(2)
+    return Number(totalCaffeine.toFixed(2))
 }
 
 // Helper function to get caffeine amount based on the coffee name
@@ -218,7 +218,7 @@ export type coffeeStats = {
 
 
 // This function was added during recording
-export function calculateCoffeeStats(coffeeConsumptionHistory: coffeeHistory) {
+export function calculateCoffeeStats(coffeeConsumptionHistory: HistoryData) {
     const dailyStats: Record<string, coffeeStats> = {}
     let totalCoffees = 0
     let totalCost = 0
@@ -228,7 +228,7 @@ export function calculateCoffeeStats(coffeeConsumptionHistory: coffeeHistory) {
     for (const [timestamp, coffee] of Object.entries(coffeeConsumptionHistory)) {
         const date = new Date(parseInt(timestamp)).toISOString().split('T')[0] // Extract date in YYYY-MM-DD format
         const caffeine = getCaffeineAmount(coffee.name)
-        const cost = parseFloat(coffee.cost)
+        const cost = parseFloat(String(coffee.cost))
 
         // Initialize or update the daily stats
         if (!dailyStats[date]) {
