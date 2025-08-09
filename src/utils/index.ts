@@ -24,7 +24,7 @@ export type HistoryData = {
 
 }
 
-export const coffeeConsumptionHistory = {
+export const coffeeConsumptionHistory: HistoryData = {
     "1727579064032": { "name": "Americano", "cost": 5.52 },
     "1727629263026": { "name": "Rockstar Energy (16oz)", "cost": 6.78 },
     "1727571485301": { "name": "Macchiato", "cost": 6.93 },
