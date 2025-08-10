@@ -9,7 +9,6 @@ import { createUserWithEmailAndPassword,
 import { useState, useEffect, useContext, createContext } from 'react'
 import { auth, db } from '../../firebase'
 import { doc, getDoc } from 'firebase/firestore';
-import { coffeeConsumptionHistory } from "../utils"
 
 
 interface AuthContextType {
@@ -31,7 +30,6 @@ export function useAuth() {
     if (context === undefined) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
-    context.globalData = coffeeConsumptionHistory
     return context;
 }
 
@@ -63,7 +61,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            console.log('CURRENT USER: ', user)
             setGlobalUser(user);
             if (user) {
                 // if there is a user, then check if the user has data in the database, and if they do, then fetch said data and update the global state
@@ -71,9 +68,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     const docRef = doc(db, 'users', user.uid);
                     const docSnap = await getDoc(docRef);
     
+                    let firebaseData = {}
                     if (docSnap.exists()) {
-                        console.log('Found user data');
+
+                        firebaseData = docSnap.data()
                         setGlobalData(docSnap.data());
+                        console.log('Found user data', firebaseData);
+                        
                     } else {
                         // Handle case where user exists in auth but not in firestore
                         setGlobalData(null);
