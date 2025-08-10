@@ -12,13 +12,20 @@ export default function Authentication(props:AuthenticationProp) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isAuthenticating, setIsAuthenticating] = useState(false)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState<string | null>(null)
 
     const { signUp, login } = useAuth()
 
 
     async function handleAuthenticate() {
-        if (!email || !email.includes('@') || !password || password.length < 6) { return }
+        if (!email || !email.includes('@')) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
 
         try {
             setIsAuthenticating(true)
@@ -33,9 +40,13 @@ export default function Authentication(props:AuthenticationProp) {
             }
             handleCloseModal()
 
-        } catch (err:any) {
-            console.log(err.message)
-            setError(err.message)
+        } catch (err) {
+            if (err instanceof Error) {
+                console.log(err.message);
+                setError(err.message);
+            } else {
+                setError("An unexpected error occurred. Please try again.");
+            }
         } finally {
             setIsAuthenticating(false)
         }

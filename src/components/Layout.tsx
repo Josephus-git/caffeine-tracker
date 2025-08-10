@@ -18,7 +18,7 @@ export default function Layout(props: any) {
                 <p>For Coffee Insatiates</p>
             </div>
             { globalUser ? (
-                <button onClick={logOut }>
+                <button onClick={ logOut }>
                 <p>Logout</p>
             </button>) : (
                 <button onClick={() => { setShowModal(true) }}>
