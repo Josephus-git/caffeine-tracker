@@ -1,4 +1,4 @@
-# ☕ Coffee Tracker
+# ☕ Caffeine Tracker
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
@@ -10,7 +10,6 @@ A simple and intuitive frontend application to track your daily coffee consumpti
 
 -   **Log Coffee:** Easily log every cup of coffee you drink.
 -   **View History:** Keep track of your consumption over time.
--   **AI-Powered Insights:** Get fun facts or recommendations about your coffee habits (powered by Firebase AI).
 -   **User-Friendly Interface:** Clean, simple, and easy to use.
 
 ## 🛠️ Tech Stack
@@ -18,7 +17,6 @@ A simple and intuitive frontend application to track your daily coffee consumpti
 -   **Frontend:** JavaScript / TypeScript
 -   **Backend Services:**
     -   [Firebase](https://firebase.google.com/): For authentication, database, and AI features.
-    -   [Firebase AI](https://firebase.google.com/docs/ai): For generative AI capabilities.
 -   **Package Manager:** [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ## 🚀 Getting Started
@@ -33,8 +31,8 @@ Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.co
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/josephus-git/FrontEnd.git
-    cd FrontEnd/coffee-tracker
+    git clone https://github.com/josephus-git/caffeine-tracker
+    cd caffeine-tracker
     ```
 
 2.  **Install dependencies:**
@@ -65,16 +63,12 @@ Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.co
     # or
     yarn start
     ```
-    The application should now be running on `http://localhost:3000` (or another port depending on your setup).
+    The application should now be running on `http://localhost:5173` (or another port depending on your setup).
 
 ## 🖼️ Screenshots
 
-*(Add screenshots of your application here to give users a preview!)*
+<img width="1916" height="964" alt="Screenshot from 2025-08-10 18-11-43" src="https://github.com/user-attachments/assets/8104547a-607d-478e-8762-9128c8e3c059" />
 
-<!-- 
-!Screenshot 1
-!Screenshot 2
--->
 
 ## 🤝 Contributing
 
