@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword,
 import { useState, useEffect, useContext, createContext } from 'react'
 import { auth, db } from '../../firebase'
 import { doc, getDoc } from 'firebase/firestore';
-
+import { coffeeConsumptionHistory } from "../utils"
 
 
 interface AuthContextType {
@@ -31,6 +31,7 @@ export function useAuth() {
     if (context === undefined) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
+    context.globalData = coffeeConsumptionHistory
     return context;
 }
 

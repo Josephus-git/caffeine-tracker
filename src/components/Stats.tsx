@@ -1,4 +1,5 @@
-import { calculateCoffeeStats, calculateCurrentCaffeineLevel, coffeeConsumptionHistory, getTopThreeCoffees, statusLevels } from "../utils"
+import { calculateCoffeeStats, calculateCurrentCaffeineLevel, getTopThreeCoffees, statusLevels } from "../utils"
+import { useAuth } from "../context/AuthContext"
 
 
 function StatCard(props: any) {
@@ -14,9 +15,15 @@ function StatCard(props: any) {
 }
 
 export default function Stats() {
-    const stats = calculateCoffeeStats(coffeeConsumptionHistory)
+    const { globalData } = useAuth()
+    
+    if (!globalData || Object.keys(globalData).length === 0) {
+        return null
+    }
+    
+    const stats = calculateCoffeeStats(globalData)
 
-    const caffeineLevel = calculateCurrentCaffeineLevel(coffeeConsumptionHistory)
+    const caffeineLevel = calculateCurrentCaffeineLevel(globalData)
     const warningLevel = caffeineLevel < statusLevels['low'].maxLevel ? 'low' : caffeineLevel < statusLevels['moderate'].maxLevel ? 'moderate' : "high" 
 
     return (
@@ -54,7 +61,7 @@ export default function Stats() {
                         </tr>
                     </thead>
                     <tbody>
-                        {getTopThreeCoffees(coffeeConsumptionHistory).map((coffee, coffeeIndex) => {
+                        {getTopThreeCoffees(globalData).map((coffee, coffeeIndex) => {
                             return (
                                 <tr key={coffeeIndex}>
                                     <td>{coffee.coffeeName}</td>

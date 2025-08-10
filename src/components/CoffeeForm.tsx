@@ -2,10 +2,11 @@ import { coffeeOptions } from "../utils";
 import { useState } from "react";
 import Modal from "./Modal";
 import Authentication from "./Authentication";
+import { type User } from 'firebase/auth'
 
 
 type coffeeFormProps = {
-    isAuthenticated: boolean
+    isAuthenticated: User|null
 }
 export default function CoffeeForm(props: coffeeFormProps) {
     const { isAuthenticated } = props
